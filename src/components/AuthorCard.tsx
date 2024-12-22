@@ -17,9 +17,12 @@ const AuthorCard = () => {
             </div>
 
 
-<p>
-Muhammad Talha is an undergraduate in Bs computer Science with a passion for Web developer and sharing Knowledge through  articles
-</p>
+            <p className='mt-4 text-black leading-relaxed'>
+                Muhammad Talha is an undergraduate in Bs computer Science with a passion for Web developer and sharing Knowledge through  articles
+            </p>
+            <div className=' mt-4 flex space-x-3'>
+                <a href="#" className='px-4 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-900 transition duration-300 '></a>
+            </div>
         </div>
     );
 }
