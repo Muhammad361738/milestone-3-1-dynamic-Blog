@@ -21,7 +21,10 @@ const AuthorCard = () => {
                 Muhammad Talha is an undergraduate in Bs computer Science with a passion for Web developer and sharing Knowledge through  articles
             </p>
             <div className=' mt-4 flex space-x-3'>
-                <a href="#" className='px-4 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-900 transition duration-300 '></a>
+                <a href="#" className='px-4 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-900 transition duration-300 '>Linkedin</a>
+                <a href="#" className='px-4 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-900 transition duration-300 '>Facebook</a>
+                <a href="https://github.com/Muhammad361738" className='px-4 py-2 text-white bg-blue-700 rounded-md hover:bg-blue-900 transition duration-300 '>Github</a>
+
             </div>
         </div>
     );

@@ -1,11 +1,6 @@
-import React from 'react';
+import {clsx , type classValue} from 'clsx';
+import {twMerge} from "tailwind-merge"
 
-const Utils = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+export function cn (...inputs : classValue[]){
+    return twMerge(clsx(inputs  ))
 }
-
-export default Utils;
