@@ -1,11 +1,218 @@
-import React from 'react';
+// import React, { useState} from 'react';
+// import {Card,CardContent} from "../components/ui/card"
+// import{ Input }from '../components/ui/input';
+// import { Button } from '../components/ui/button';
 
-const Comments = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+// interface Comment{
+//     id : string,
+//     author : string,
+//     text : string
+// }
+
+// interface commentSectionPOrops{
+//     postId : string
+// }
+//  export default function CommentSection ({postId}:commentSectionPOrops){
+//     const [comments, setComment] = useState<Comment[]>([])
+//     const [newComment, setNewComment] = useState('');
+//     const [authorName, setAuthorName] = useState('');
+//     const [editingCommentId, setEditingCommentId] = useState<string| null>(null)
+
+// const handleAddcomment = () => {
+//     if (newComment.trim() && authorName.trim()){
+//         const newCommentObj : Comment = {
+//             id :new Date().toISOString(),
+//             author:authorName,
+//             text: newComment,
+//         }
+//         setComment([...comments, newCommentObj]);
+//         setNewComment('')
+//         setAuthorName('')
+//     }
+// };
+// const handleEditComment = (commentID : string) =>{
+//     const commentToEdit = comments.find((comment) => comment.id === commentID);
+//     if (commentToEdit){
+//         setNewComment(commentToEdit.text);
+//         setAuthorName(commentToEdit.author)
+//         setEditingCommentId(commentID)
+//     }
+// };
+// const handleSaveEditedComment = () => {
+//     if (newComment.trim() && authorName.trim() && editingCommentId) {
+//         const updatedComments = comments.map((comment) =>
+//             comment.id === editingCommentId
+//                 ? { ...comment, text: newComment, author: authorName }
+//                 : comment // Return the original comment if it doesn't match
+//         );
+//         setComment(updatedComments);
+//         setNewComment('');
+//         setAuthorName('');
+//         setEditingCommentId(null);
+//     }
+// };
+
+// return (
+//     <div className='mt-8'>
+//         <h2 className='text-2xl font-semibold'>Comments</h2>
+//         <div className='mt-4 space-y-4'>
+//             {comments.length > 0 ?(
+//                 comments.map((comment) => (
+//                     <Card key={comment.id}>
+//                         <CardContent className='p-4'>
+//                             <div className='font-semibold '>
+//                                 {comment.author}
+//                             </div>
+//                             <p>{comment.text}</p>
+//                             <Button onClick={()=>handleEditComment(comment.id)}
+//                                 className='mt-2 text-blue-500'>
+//                                     Edit
+//                             </Button>
+//                         </CardContent>
+//                     </Card>
+//                 ))
+//             ) : (
+//                 <p className=' text-slate-400'>No Comment yet</p>
+//             )
+//         }
+//         </div>
+
+
+//         <div className='mt-6'>
+//             <Input
+//             type='text'
+//             value={authorName}
+//             onChange={(e) => setAuthorName(e.target.value)}
+//             placeholder='Your name'
+//             className='w-full mb-2'
+//             />
+//             <Input
+//             type='text'
+//             value={authorName}
+//             onChange={(e) => setAuthorName(e.target.value)}
+//             placeholder='Your name'
+//             className='w-full mb-2'
+//             />
+//             <Button onClick={editingCommentId ? handleSaveEditedComment : handleAddcomment}
+//             className='mt-4'>
+//                 {editingCommentId ? 'Save': "Submit"}
+//             </Button>
+//         </div>
+//     </div>
+// )
+
+//  }
+import React, { useState } from 'react';
+import { Card, CardContent } from "../components/ui/card";
+import { Input } from '../components/ui/input';
+import { Button } from '../components/ui/button';
+
+interface Comment {
+  id: string;
+  author: string;
+  text: string;
 }
 
-export default Comments;
+interface CommentSectionProps {
+  postId: string; // Use postId to associate comments with a specific post
+}
+
+export default function CommentSection({ postId }: CommentSectionProps) {
+  // Use a record to store comments by postId
+  const [comments, setComments] = useState<Record<string, Comment[]>>({});
+  const [newComment, setNewComment] = useState('');
+  const [authorName, setAuthorName] = useState('');
+  const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
+
+  // Add a new comment for a specific post
+  const handleAddComment = () => {
+    if (newComment.trim() && authorName.trim()) {
+      const newCommentObj: Comment = {
+        id: new Date().toISOString(),
+        author: authorName,
+        text: newComment,
+      };
+
+      setComments((prevComments) => ({
+        ...prevComments,
+        [postId]: [...(prevComments[postId] || []), newCommentObj],
+      }));
+
+      setNewComment('');
+      setAuthorName('');
+    }
+  };
+
+  // Edit an existing comment
+  const handleEditComment = (commentID: string) => {
+    const commentToEdit = comments[postId]?.find((comment) => comment.id === commentID);
+    if (commentToEdit) {
+      setNewComment(commentToEdit.text);
+      setAuthorName(commentToEdit.author);
+      setEditingCommentId(commentID);
+    }
+  };
+
+  // Save an edited comment
+  const handleSaveEditedComment = () => {
+    if (newComment.trim() && authorName.trim() && editingCommentId) {
+      const updatedComments = comments[postId]?.map((comment) =>
+        comment.id === editingCommentId
+          ? { ...comment, text: newComment, author: authorName }
+          : comment
+      );
+
+      setComments((prevComments) => ({
+        ...prevComments,
+        [postId]: updatedComments || [],
+      }));
+
+      setNewComment('');
+      setAuthorName('');
+      setEditingCommentId(null);
+    }
+  };
+
+  return (
+    <div className='mt-8'>
+      <h2 className='text-2xl font-semibold'>Comments</h2>
+      <div className='mt-4 space-y-4'>
+        {comments[postId]?.length > 0 ? (
+          comments[postId].map((comment) => (
+            <Card key={comment.id}>
+              <CardContent className='p-4'>
+                <div className='font-semibold'>{comment.author}</div>
+                <p>{comment.text}</p>
+                <Button onClick={() => handleEditComment(comment.id)} className='mt-2 text-blue-500'>
+                  Edit
+                </Button>
+              </CardContent>
+            </Card>
+          ))
+        ) : (
+          <p className='text-slate-400'>No comments yet</p>
+        )}
+      </div>
+
+      <div className='mt-6'>
+        <Input
+          type='text'
+          value={authorName}
+          onChange={(e) => setAuthorName(e.target.value)}
+          placeholder='Your name'
+          className='w-full mb-2'
+        />
+        <Input
+          type='text'
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder='Your comment'
+          className='w-full mb-2'
+        />
+        <Button onClick={editingCommentId ? handleSaveEditedComment : handleAddComment} className='mt-4'>
+          {editingCommentId ? 'Save' : 'Submit'}
+        </Button>
+      </div>
+    </div>
+  );
+}
