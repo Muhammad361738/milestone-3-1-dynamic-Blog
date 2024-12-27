@@ -6,54 +6,54 @@ const Mega = () => {
     const posts = [
         {
             id: "1",
-            title: "HTML Block of Webdevelopment",
-            description: "Explore The HTML: Backbone of Every Web App",
+            title: "Machine Learning Mastery",
+            description: "Explore The Machine Learning Mastery ",
             date: "2024-8-12",
-            imageUrl: "../image.png", // Use the imported image
+            imageUrl: "../M1.png", // Use the imported image
         },
         {
             id: "2",
-            title: "HTML Block of Webdevelopment",
-            description: "Explore The HTML: Backbone of Every Web App",
+            title: "AWS Machine Learning ",
+            description: "Explore The AWS Machine Learning ",
             date: "2024-8-12",
-            imageUrl: "../image.png", // Use the imported image
+            imageUrl: "../aws.png", // Use the imported image
         },
         {
             id: "3",
-            title: "HTML Block of Webdevelopment",
-            description: "Explore The HTML: Backbone of Every Web App",
+            title: "Best AI Copywriting Tools",
+            description: "Explore The Best AI Copywriting  ",
             date: "2024-8-12",
-            imageUrl: "../image.png", // Use the imported image
+            imageUrl: "../copy.png", // Use the imported image
         },
         {
             id: "4",
-            title: "HTML Block of Webdevelopment",
-            description: "Explore The HTML: Backbone of Every Web App",
+            title: "Blockchain Technology ",
+            description: "Explore The Blockchain Technology",
             date: "2024-8-12",
-            imageUrl: "../image.png", // Use the imported image
+            imageUrl: "../blockchain.png", // Use the imported image
         },
         {
             id: "5",
-            title: "HTML Block of Webdevelopment",
-            description: "Explore The HTML: Backbone of Every Web App",
+            title: "ChatGPT Overview",
+            description: "Explore The ChatGPT",
             date: "2024-8-12",
-            imageUrl: "../image.png", // Use the imported image
+            imageUrl: "../chatgpt.png", // Use the imported image
         },
         {
             id: "6",
-            title: "HTML Block of Webdevelopment",
-            description: "Explore The HTML: Backbone of Every Web App",
+            title: "Google AI Overview",
+            description: "Explore The Google AI ",
             date: "2024-8-12",
-            imageUrl: "../image.png", // Use the imported image
+            imageUrl: "../google.png", // Use the imported image
         },
     ];
 
     return (
-        <div className='my-8'>
-            <h1 className='text-3xl font-bold text-center my-8 text-red-600 animate-color-change'>
+        <div className='my-2'>
+            <h1 className='text-3xl font-bold text-center px-4   my-8 text-white animate-color-change'>
                 Explore The World Of AI
             </h1>
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-6 gap-4'>
                 {posts.map((post, index) => (
                     <div className='fade-in' key={post.id}>
                         <div className='blog-card'>

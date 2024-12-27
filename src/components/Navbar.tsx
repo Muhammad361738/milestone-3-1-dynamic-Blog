@@ -27,37 +27,42 @@ export default function Navbar() {
     }, []);
 
     return (
-        <header className="text-gray-400 body-font shadow-lg">
-            <div className="container mx-auto flex flex-wrap p-2 flex-col md:flex-row items-center">
-                <div className="flex-1 text-black">
-                    <p>{currentDateTime}</p>
+        <header className="bg-gray-900 mt-0 text-gray-100 body-font shadow-lg">
+            <div className="container mx-auto flex flex-wrap p-4 flex-col md:flex-row gap-3 items-center">
+                {/* Date and Time */}
+                <div className="flex-1 text-center md:text-left">
+                    <p className="text-sm text-gray-400">{currentDateTime}</p>
                 </div>
-                <nav className="md:ml-auto flex flex-wrap items-center text-black justify-center">
-                    <Link href="/" className="mr-5 hover:text-red-700 transition-colors duration-300 transform hover:scale-105">
+
+                {/* Navbar Links */}
+                <nav className="md:ml-auto flex flex-wrap items-center gap-4 text-gray-100 justify-center space-x-4">
+                    <Link href="/" className="text-lg hover:text-red-600 transition-colors duration-300 transform hover:scale-105">
                         Home
                     </Link>
-                    <Link href="/about" className="mr-5 hover:text-red-700 transition-colors duration-300 transform hover:scale-105">
+                    <Link href="/about" className="text-lg hover:text-red-600 transition-colors duration-300 transform hover:scale-105">
                         About
                     </Link>
-                    <Link href="/blog" className="mr-5 hover:text-red-700 transition-colors duration-300 transform hover:scale-105">
+                    <Link href="/blog" className="text-lg hover:text-red-600 transition-colors duration-300 transform hover:scale-105">
                         Blog
                     </Link>
-                    <Link href="/contact" className="mr-5 hover:text-red-700 transition-colors duration-300 transform hover:scale-105">
+                    <Link href="/contact" className="text-lg hover:text-red-600 transition-colors duration-300 transform hover:scale-105">
                         Contact
                     </Link>
                 </nav>
-                <button className="inline-flex items-center bg-blue-700 border-0 py-1 px-3 focus:outline-none hover:bg-red-500 rounded text-white mt-4 md:mt-0 transition-colors duration-300">
-                    Github
+
+                {/* Github Button */}
+                <button className="inline-flex items-center bg-blue-700 hover:bg-blue-600 py-2 px-2 rounded text-gray-100 mt-4 md:mt-0 transition-colors duration-300">
+                    <span>Github</span>
                     <svg
                         fill="none"
                         stroke="currentColor"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        className="w-4 h-4 ml-1"
+                        className="w-5 h-5 ml-1 "
                         viewBox="0 0 24 24"
                     >
-                        <path d="M5 12h14M12 5l7 7-7 7" /> {/* Fixed valid SVG path */}
+                        <path d="M5 12h14M12 5l7 7-7 7" /> {/* Valid SVG path for arrow */}
                     </svg>
                 </button>
             </div>

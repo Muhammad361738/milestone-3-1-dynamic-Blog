@@ -8,30 +8,50 @@ interface BlogCardProps {
 
 const BlogCard = ({ post, isDarkBackground }: BlogCardProps) => {
     return (
-        <Card className={`p-4 ${isDarkBackground ? 'bg-sky-800 text-white' : 'text-slate-800'} rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300`}>
-            <img
-                src={post.imageUrl}
-                alt={post.title}
-                className='w-full h-48 object-cover rounded-t-lg'
-            />
-            <CardTitle className="text-xl font-normal mt-4 text-center">{post.title}</CardTitle>
-            <br />
-            <CardContent className="text-center">
-                <p>{post.description}</p>
+        <Card
+            className={`overflow-hidden rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-2xl ${
+                isDarkBackground ? 'bg-gray-800 text-gray-100' : 'bg-gray-700 text-gray-200'
+            }`}
+        >
+            {/* Image Section */}
+            <div className="relative w-full h-56 overflow-hidden">
+                <img
+                    src={post.imageUrl}
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                />
+            </div>
+
+            {/* Content Section */}
+            <CardContent className="p-6">
+                <CardTitle className="text-3xl font-semibold mb-4 text-center capitalize">
+                    {post.title}
+                </CardTitle>
+                <p className="text-base leading-relaxed text-gray-400 line-clamp-3">
+                    {post.description}
+                </p>
             </CardContent>
-            <div className='flex flex-col items-center mt-4'>
-                <p className={`text-sm mb-2 ${isDarkBackground ? 'text-slate-400' : 'text-slate-600'}`}>
+
+            {/* Footer Section */}
+            <div className="p-6 pt-4">
+                <p className={`text-sm mb-4 text-center ${
+                    isDarkBackground ? 'text-gray-500' : 'text-gray-400'
+                }`}>
                     Published on: {new Date(post.date).toLocaleDateString()}
                 </p>
                 <a
                     href={`/posts/${post.id}`}
-                    className={`w-full p-6 text-white ${isDarkBackground ? 'bg-black hover:bg-red-500' : 'bg-blue-600 hover:bg-blue-500'} rounded`}
+                    className={`block w-full px-6 py-3 text-center font-medium rounded-md transition-colors duration-300 ${
+                        isDarkBackground
+                            ? 'bg-blue-700 text-white hover:bg-blue-600'
+                            : 'bg-gray-600 text-white hover:bg-gray-500'
+                    }`}
                 >
                     Read More
                 </a>
             </div>
         </Card>
     );
-}
+};
 
 export default BlogCard;
